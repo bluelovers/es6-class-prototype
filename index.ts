@@ -11,8 +11,11 @@ function classPrototype<T>(target: ClassProxyStatic<T>): T
 
 	let prototype = Object.keys(desc).reduce(function (a, b)
 	{
-		// @ts-ignore
-		a[b] = target.prototype[b];
+		if (!desc[b].get && !desc[b].set)
+		{
+			// @ts-ignore
+			a[b] = target.prototype[b];
+		}
 
 		return a;
 	}, {});

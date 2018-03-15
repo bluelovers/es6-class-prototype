@@ -1,0 +1,32 @@
+{
+  "name": "es6-class-prototype",
+  "version": "1.0.0",
+  "description": "get prototype from es6 class, like old way",
+  "keywords": [
+    "class",
+    "classes",
+    "es6",
+    "extend",
+    "inherit",
+    "javascript",
+    "proto",
+    "prototypes"
+  ],
+  "homepage": "https://github.com/bluelovers/es6-class-prototype#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/es6-class-prototype/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/es6-class-prototype.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "class-proxy": "^1.1.1"
+  }
+}

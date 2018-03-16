@@ -4,14 +4,14 @@
 
 import { ClassProxyStatic } from 'class-proxy';
 
-function classPrototype<T>(target: ClassProxyStatic<T>): T
+function classPrototype<T>(target: _classPrototype.IClassProxyStatic<T>, all?: boolean): T
 {
 	// @ts-ignore
 	let desc = Object.getOwnPropertyDescriptors(target.prototype);
 
 	let prototype = Object.keys(desc).reduce(function (a, b)
 	{
-		if (!desc[b].get && !desc[b].set)
+		if (all || !desc[b].get && !desc[b].set)
 		{
 			// @ts-ignore
 			a[b] = target.prototype[b];
@@ -28,6 +28,14 @@ const _classPrototype = classPrototype as typeof classPrototype & {
 	default: typeof classPrototype,
 	classPrototype: typeof classPrototype,
 };
+
+module _classPrototype
+{
+	export interface IClassProxyStatic<T> extends ClassProxyStatic<T>
+	{
+
+	}
+}
 
 _classPrototype.default = _classPrototype.classPrototype = _classPrototype;
 

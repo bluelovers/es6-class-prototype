@@ -2,11 +2,11 @@
 /**
  * Created by user on 2018/3/16/016.
  */
-function classPrototype(target) {
+function classPrototype(target, all) {
     // @ts-ignore
     let desc = Object.getOwnPropertyDescriptors(target.prototype);
     let prototype = Object.keys(desc).reduce(function (a, b) {
-        if (!desc[b].get && !desc[b].set) {
+        if (all || !desc[b].get && !desc[b].set) {
             // @ts-ignore
             a[b] = target.prototype[b];
         }

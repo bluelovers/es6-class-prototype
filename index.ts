@@ -4,7 +4,7 @@
 
 import { ClassProxyStatic } from 'class-proxy';
 
-function classPrototype<T>(target: _classPrototype.IClassProxyStatic<T>, all?: boolean): T
+function classPrototype<T>(target: IClassProxyStatic<T>, all?: boolean): T
 {
 	// @ts-ignore
 	let desc = Object.getOwnPropertyDescriptors(target.prototype);
@@ -24,19 +24,19 @@ function classPrototype<T>(target: _classPrototype.IClassProxyStatic<T>, all?: b
 	return Object.assign({}, target.prototype, prototype);
 }
 
-const _classPrototype = classPrototype as typeof classPrototype & {
-	default: typeof classPrototype,
-	classPrototype: typeof classPrototype,
-};
-
-module _classPrototype
+declare module classPrototype
 {
 	export interface IClassProxyStatic<T> extends ClassProxyStatic<T>
 	{
 
 	}
+
+	export function classPrototype<T>(target: IClassProxyStatic<T>, all?: boolean): T
 }
 
-_classPrototype.default = _classPrototype.classPrototype = _classPrototype;
+import IClassProxyStatic = classPrototype.IClassProxyStatic;
 
-export = _classPrototype;
+classPrototype.classPrototype = classPrototype;
+classPrototype.default = classPrototype;
+
+export = classPrototype;

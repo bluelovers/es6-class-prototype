@@ -2,12 +2,14 @@
  * Created by user on 2018/3/16/016.
  */
 import { ClassProxyStatic } from 'class-proxy';
-declare const _classPrototype: (<T>(target: _classPrototype.IClassProxyStatic<T>, all?: boolean) => T) & {
-    default: <T>(target: _classPrototype.IClassProxyStatic<T>, all?: boolean) => T;
-    classPrototype: <T>(target: _classPrototype.IClassProxyStatic<T>, all?: boolean) => T;
-};
-declare module _classPrototype {
+declare function classPrototype<T>(target: IClassProxyStatic<T>, all?: boolean): T;
+declare namespace classPrototype {
+    var default: typeof classPrototype;
+}
+declare module classPrototype {
     interface IClassProxyStatic<T> extends ClassProxyStatic<T> {
     }
+    function classPrototype<T>(target: IClassProxyStatic<T>, all?: boolean): T;
 }
-export = _classPrototype;
+import IClassProxyStatic = classPrototype.IClassProxyStatic;
+export = classPrototype;

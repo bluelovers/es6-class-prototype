@@ -2,7 +2,7 @@
  * Created by user on 2018/3/16/016.
  */
 
-import classPrototype from '..';
+import classPrototype from '../src';
 
 class A
 {

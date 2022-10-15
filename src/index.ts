@@ -2,9 +2,10 @@
  * Created by user on 2018/3/16/016.
  */
 
-import { ClassProxyStatic } from 'class-proxy';
+import { IClassProxyStatic } from 'class-proxy';
+export { IClassProxyStatic } from 'class-proxy';
 
-function classPrototype<T>(target: IClassProxyStatic<T>, all?: boolean): T
+export function classPrototype<T>(target: IClassProxyStatic<T>, all?: boolean): T
 {
 	// @ts-ignore
 	let desc = Object.getOwnPropertyDescriptors(target.prototype);
@@ -24,19 +25,13 @@ function classPrototype<T>(target: IClassProxyStatic<T>, all?: boolean): T
 	return Object.assign({}, target.prototype, prototype);
 }
 
-declare module classPrototype
+export default classPrototype
+
+// @ts-ignore
+if (process.env.TSDX_FORMAT !== 'esm')
 {
-	export interface IClassProxyStatic<T> extends ClassProxyStatic<T>
-	{
+	Object.defineProperty(classPrototype, "__esModule", { value: true });
 
-	}
-
-	export function classPrototype<T>(target: IClassProxyStatic<T>, all?: boolean): T
+	Object.defineProperty(classPrototype, 'classPrototype', { value: classPrototype });
+	Object.defineProperty(classPrototype, 'default', { value: classPrototype });
 }
-
-import IClassProxyStatic = classPrototype.IClassProxyStatic;
-
-classPrototype.classPrototype = classPrototype;
-classPrototype.default = classPrototype;
-
-export = classPrototype;

@@ -1,3 +1,4 @@
 {
-  "extends": "@bluelovers/tsconfig"
+  "extends": "@bluelovers/tsconfig/tsdx/index.json",
+  "compilerOptions": {}
 }

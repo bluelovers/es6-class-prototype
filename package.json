@@ -1,6 +1,6 @@
 {
   "name": "es6-class-prototype",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "get prototype from es6 class, like old way",
   "keywords": [
     "class",
@@ -54,7 +54,7 @@
     "posttest": "yarn run build",
     "install:frozenLockfile": "yarn-tool install --frozen-lockfile",
     "install:resetLockfile": "yarn-tool install --reset-lockfile",
-    "build": "yarn run build:tsdx && yarn run build:dts:bundle",
+    "build": "yarn run build:tsdx && yarn run build:dts:tsc",
     "build:dts:bundle": "ynpx dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts --no-banner --inline-declare-global & echo build:dts:bundle",
     "build:dts:copy": "copy .\\src\\index.d.ts .\\dist\\index.d.ts & echo build:dts",
     "build:dts:tsc": "yarn run build:dts:copy && yarn run build:dts:tsc:emit && yarn run build:dts:copy",
@@ -93,7 +93,8 @@
     "class-proxy": "^2.0.0"
   },
   "devDependencies": {
-    "@bluelovers/tsconfig": "^1.0.31"
+    "@bluelovers/tsconfig": "^1.0.31",
+    "@types/node": "^18.11.0"
   },
   "packageManager": "yarn@1.22.19"
 }
